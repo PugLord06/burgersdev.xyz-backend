@@ -21,7 +21,7 @@ It powers the interactive AI Assistant for [Michael Burgers' Portfolio](https://
 
 * **Framework:** FastAPI (Python 3.11)
 * **LLM Orchestration:** LangChain (`langchain-google-genai`)
-* **AI Model:** Google Gemini API (`gemini-1.5-flash`)
+* **AI Model:** Google Gemini API (`gemini-3.5-flash`)
 * **Vector Database:** ChromaDB (ONNX MiniLM Embeddings)
 * **Rate Limiting:** SlowAPI
 * **Server:** Uvicorn (ASGI)
