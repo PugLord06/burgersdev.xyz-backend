@@ -7,7 +7,7 @@ from app.api.dependencies import limiter
 router = APIRouter()
 
 @router.post("/chat")
-@limiter.limit("5/minute")
+@limiter.limit("30/minute")
 async def chat_endpoint(request: Request, chat_req: ChatRequest):
     text = chat_req.get_text()
     if not text:
