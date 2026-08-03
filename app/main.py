@@ -15,7 +15,11 @@ app.add_middleware(
         "http://localhost:5173", 
         "http://localhost:4173",
         "https://burgersportfolio.web.app",
-        "https://burgersportfolio.firebaseapp.com"
+        "https://burgersportfolio.firebaseapp.com",
+        "https://burgersdev.xyz",
+        "http://burgersdev.xyz",
+        "https://www.burgersdev.xyz",
+        "http://www.burgersdev.xyz"
     ],
     allow_credentials=True,
     allow_methods=["*"],
