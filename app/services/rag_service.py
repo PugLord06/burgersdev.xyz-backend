@@ -23,7 +23,7 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
 
         # Using gemini-1.5-flash for stable public API streaming
         llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash", 
+            model="gemini-3.5-flash", 
             google_api_key=api_key,
             temperature=0.7
         )
