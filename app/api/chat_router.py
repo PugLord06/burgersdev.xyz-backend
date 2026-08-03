@@ -18,5 +18,9 @@ async def chat_endpoint(request: Request, chat_req: ChatRequest):
     return StreamingResponse(
         stream_chat_response(text),
         media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"}
+        headers={
+            "Cache-Control": "no-cache, no-transform",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
     )
