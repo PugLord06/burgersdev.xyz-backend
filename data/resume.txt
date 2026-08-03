@@ -1,0 +1,27 @@
+# Michael Burgers
+Software Engineer | AI & Prompt Engineer
+
+## Education
+- Bachelor of Science Specializing in Software Engineering (BScIT) at Eduvos
+- Final 3rd year, expected graduation: December 2026 (Ceremony: May 2027)
+- Academic Standing: Top 15% of class
+- Honors: Member of the Golden Key International Honour Society
+
+## Experience
+**Founder & Software Engineer | Is It Studios**
+- Run a web agency focused on refurbishing outdated websites and complicated CRMs.
+- Upgrade legacy systems to Enterprise Grade Technology using the same stacks as Netflix and Meta.
+- Build modern frontends using NextJS, TypeScript, and Tailwind CSS.
+- Develop robust backend applications using Python, Java, C#, and C++.
+
+## Projects
+**Creator | Isitcheatingif.com**
+- Developed and launched an online web party game where couples, individuals, and friends explore relationship boundaries.
+- Successfully grew the platform to 400+ active monthly players.
+
+## Core Skills & Technologies
+- **Languages:** TypeScript, JavaScript, Python, Java, C#, C++
+- **Backend & APIs:** Node.js, Java (Spring Boot), REST API development, FastAPI
+- **AI & Machine Learning:** AI Engineering, Prompt Engineering, Applied Machine Learning, local LLM integrations (Ollama, LangChain)
+- **Databases:** MySQL, SQLite, MongoDB
+- **Cloud & DevOps:** Git, Oracle Cloud Infrastructure (OCI), AWS, Google Cloud Platform (GCP)

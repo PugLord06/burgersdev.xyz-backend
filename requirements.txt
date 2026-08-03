@@ -1,0 +1,8 @@
+langchain
+langchain-community
+chromadb
+fastapi
+uvicorn
+
+langchain-google-genai
+slowapi
