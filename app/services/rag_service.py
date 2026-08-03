@@ -21,8 +21,9 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
         if not api_key or api_key == "your_api_key_here":
             raise ValueError("GEMINI_API_KEY environment variable is missing or set to placeholder.")
 
+        # Using gemini-1.5-flash for stable public API streaming
         llm = ChatGoogleGenerativeAI(
-            model="gemini-3.5-flash", 
+            model="gemini-1.5-flash", 
             google_api_key=api_key,
             temperature=0.7
         )
@@ -31,12 +32,23 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
         prompt = f"Context:\n{context_str}\n\nQuestion: {query}\n\nAnswer:"
         
         async for chunk in llm.astream(prompt):
-            content_text = chunk.content
-            if isinstance(content_text, list):
-                content_text = "".join([str(item) for item in content_text])
+            raw_content = chunk.content
+            extracted_text = ""
             
-            if content_text:
-                payload = json.dumps({"content": content_text})
+            if isinstance(raw_content, str):
+                extracted_text = raw_content
+            elif isinstance(raw_content, list):
+                for part in raw_content:
+                    if isinstance(part, str):
+                        extracted_text += part
+                    elif isinstance(part, dict):
+                        if part.get("type") == "text" and "text" in part:
+                            extracted_text += part["text"]
+                        elif "text" in part and isinstance(part["text"], str):
+                            extracted_text += part["text"]
+            
+            if extracted_text:
+                payload = json.dumps({"content": extracted_text})
                 yield f"data: {payload}\n\n"
                 yielded_any = True
                 await asyncio.sleep(0.001)
@@ -45,7 +57,6 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
         print(f"Gemini API Error: {last_error}\n{traceback.format_exc()}")
 
     if not yielded_any:
-        # Diagnostic fallback outputting the actual error message
         error_details = last_error if last_error else "Unknown initialization error"
         answer = f"⚠️ **AI Backend Error**\n\nFailed to get response from Gemini API.\n**Details:** `{error_details}`"
         chunk_size = 4
