@@ -18,7 +18,7 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
         if not api_key or api_key == "your_api_key_here":
             raise ValueError("GEMINI_API_KEY is not set or invalid.")
 
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key)
+        llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
         context_str = "\n---\n".join([doc.page_content for doc in docs]) if docs else ""
         prompt = f"Context:\n{context_str}\n\nQuestion: {query}\n\nAnswer:"
         
