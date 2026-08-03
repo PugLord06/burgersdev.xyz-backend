@@ -6,10 +6,13 @@ from typing import AsyncGenerator
 from langchain_google_genai import ChatGoogleGenerativeAI
 from app.db.vectorstore import get_retriever
 
+
 async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerator[str, None]:
     try:
         retriever = get_retriever(db_path=db_path, k=3)
-        docs = retriever.invoke(query)
+        # Run the synchronous ChromaDB retrieval in a thread pool
+        # so it doesn't block the async event loop
+        docs = await asyncio.to_thread(retriever.invoke, query)
     except Exception:
         docs = []
 
@@ -50,7 +53,6 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
                 payload = json.dumps({"content": extracted_text})
                 yield f"data: {payload}\n\n"
                 yielded_any = True
-                await asyncio.sleep(0.001)
     except Exception as e:
         last_error = f"{type(e).__name__}: {str(e)}"
         print(f"Gemini API Error: {last_error}\n{traceback.format_exc()}")
