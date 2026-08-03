@@ -21,9 +21,9 @@ async def stream_chat_response(query: str, db_path: str = None) -> AsyncGenerato
         if not api_key or api_key == "your_api_key_here":
             raise ValueError("GEMINI_API_KEY environment variable is missing or set to placeholder.")
 
-        # Using gemini-1.5-flash for stable public API streaming
+        # Using gemini-1.5-flash (valid model ID for Google AI Studio API)
         llm = ChatGoogleGenerativeAI(
-            model="gemini-3.5-flash", 
+            model="gemini-1.5-flash", 
             google_api_key=api_key,
             temperature=0.7
         )
